@@ -1,3 +1,6 @@
+clear all
+close all
+clc
 %% Definizione del sistema e funzione per rappresentarlo in matlab come sistema non lineare
 % Il sistema è descitto dalle equazioni:
 % x1dot = x2 = f1(x)
@@ -115,6 +118,7 @@ dipende dall'ingresso di controllo
 %}
 
 %% PIANO DELLE FASI AL VARIARE DI U
+close all
 % Per analizzare il sistema, plottiamo il piano delle fasi per diversi
 % ingressi, tra cui quello intorno al quale è stato linearizzato il
 % sistema:
@@ -165,8 +169,6 @@ nukelines e le traiettorie nel piano delle fasi
 
  
 %% Analisi dei punti di equilibrio con il piano delle fasi e linarizzazione del sistema intorno al punto di equilibrio di nostro interesse
-clear all
-close all
 % Il sistema dinamico non lineare è descritto nella forma:
 
 % x1dot = x2 = f1(x)
@@ -202,7 +204,7 @@ D=0;
 
 
 %% VALUTARE LE PERFORMANCE CARATTERIZZANDO LA RISPOSTA DEL SISTEMA A CICLO CHIUSO (WP2)
-
+close all
 %{
 Analizziamo il controllore fornito dalla traccia: $u_l=-Kz + k_r r_l$
 le $K$ e il $k_r$ che otterremo durante la procedura di sintesi saranno quindi relative a questo $u_l$

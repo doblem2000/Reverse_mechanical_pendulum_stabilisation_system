@@ -1,3 +1,6 @@
+clear all
+close all
+clc
 %% Progettiamo un controllore migliore del precedente, considerando la linearizzazione del sistema intorno al punto di equilibrio (pi,0)
 A=[0 1; 9.81 -0.1];
 B=[0; 1];
@@ -16,6 +19,7 @@ p=[-20 -40] % posizione desiderata dei poli
 K=place(A,B,p)
 kr=-1/(C*inv(A-B*K)*B)
 %% TEST LINEARE
+close all
 rl = 0
 simOut = sim('simulation_poleplacement_WP2_L', 'SimulationMode', 'normal');
 
@@ -23,6 +27,7 @@ simOut = sim('simulation_poleplacement_WP2_L', 'SimulationMode', 'normal');
 plotSimulationResults(simOut);
 
 %% TEST NON LINEARE
+close all
 r=pi
 simOut = sim('simulation_poleplacement_WP2_NL', 'SimulationMode', 'normal');
 
@@ -82,6 +87,7 @@ K=[k1 k2]
 kr=-1/(C*inv(A-B*K)*B)
 
 %% TEST PRELIMINARE SUL LINEARE
+close all
 rl = 0
 simOut = sim('simulation_poleplacement_WP2_L', 'SimulationMode', 'normal');
 
@@ -89,6 +95,7 @@ simOut = sim('simulation_poleplacement_WP2_L', 'SimulationMode', 'normal');
 plotSimulationResults(simOut);
 
 %% TEST SUL NON LINEARE
+close all
 r=pi
 simOut = sim('simulation_poleplacement_WP2_NL', 'SimulationMode', 'normal');
 
