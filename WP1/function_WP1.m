@@ -1,5 +1,4 @@
 
-
 function xdot = function_WP1(x)
     m=1;
     l=1;
@@ -10,5 +9,7 @@ function xdot = function_WP1(x)
     u=x(3);
     x1dot= x2;
     x2dot= - ((g/l)*sin(x1)) - ((b/(m*(l^2)))* x2) + (u/(m*(l^2)));
+   
+    
     xdot=[x1dot, x2dot].';
 end
