@@ -23,6 +23,7 @@ simOut = sim('simulation_poleplacement_WP2_L', 'SimulationMode', 'normal');
 plotSimulationResults(simOut);
 
 %% TEST NON LINEARE
+r=pi
 simOut = sim('simulation_poleplacement_WP2_NL', 'SimulationMode', 'normal');
 
 % Chiamata alla funzione per visualizzare i risultati
@@ -88,6 +89,7 @@ simOut = sim('simulation_poleplacement_WP2_L', 'SimulationMode', 'normal');
 plotSimulationResults(simOut);
 
 %% TEST SUL NON LINEARE
+r=pi
 simOut = sim('simulation_poleplacement_WP2_NL', 'SimulationMode', 'normal');
 
 % Chiamata alla funzione per visualizzare i risultati
