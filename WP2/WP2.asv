@@ -122,16 +122,15 @@ plotSimulationResults(simOut,1);
 
 % Ottenendo i seguenti risultati:
 %{
-Step Information for the Output:
-         RiseTime: 0.2312
-    TransientTime: 0.6759
-     SettlingTime: 0.6759
-      SettlingMin: 2.8913
-      SettlingMax: 3.2928
-        Overshoot: 4.8085
-       Undershoot: 0
-             Peak: 3.2928
-         PeakTime: 0.5074
+RiseTime: 0.4490
+TransientTime: 0.7219
+SettlingTime: 0.7219
+SettlingMin: 1.9824
+SettlingMax: 2.1412
+Overshoot: 0.1271
+Undershoot: 0
+Peak: 2.1412
+PeakTime: 1.2266
 
 ANALISI RISULTATI
 
@@ -197,22 +196,29 @@ pò l'overshoot
 %}
 
 %% AZIONE INTEGRALE CON EQUIPOLLANZA DEI POLINOMI
+%{
+Proviamo a risolvere il problema tramite l'equipollanza dei polinomi,
+dato che è un sistema del secondo ordine possiamo equiparare il polinomio
+caratteristico di (A-BK), con il polinomio del secondo ordine:
+s^2 + 2sξω + ω^2 = 0. 
+Considerando K = [k1 k2] si ottiene:
+A-BK = [0 1; 9.81-k1 -0.1-k2]
+e calcolando il polinomio caratteristico:
+s^2 + (0.1+k2)s + (k1-9.81)
+Di conseguenza:
+k1=ω^2+9.81 
+k2=2ξω-0.1
 
-
-A=[0 1; 9.81 -0.1];
-B=[0; 1];
-C=[1 0];
-D=0;
-
-As=[0 1 0; 9.81 -0.1 0; 1 0 0];
-Bs=[0 0; 1 0; 0 -1];
-
-hatB=[0; 1; 0]
-
-%matrice di raggiungibilità
-W_Rs=[hatB As*hatB, As^2*hatB];
-%verifichiamo che rango sia uguale a max(n righe, n colonne) di W_R
-rank(W_Rs)
+Il k1, il k2 e il kr ottenuti sono relativi al controllore:
+$u_l=-Kz + k_r r_l$
+le $K$ e il $k_r$ che otterremo durante la procedura di sintesi saranno quindi relative a questo $u_l$
+alla fine dovremo riportare questo al sistema non lineare: 
+$u -u_e= -K (x-x_e) + k_r (r_{nl -\pi})$
+$u_e=0$, $x_e=\begin{bmatrix}\pi \\ 0\end{bmatrix}$
+$u=-K_1 x_1 - K_2 x_2 + K_1 \pi + k_r (r_{nl -\pi})$
+$r_{nl} = \pi$
+$u=-K_1 x_1 - K_2 x_2 + K_1 \pi$ 
+%}
 
 % Consideriamo ξ=1 (ovvero sovraelongazione pari a 0)
 % e una ω=5.4 (ottenendo rise time = 0.5)
@@ -267,60 +273,35 @@ pò l'overshoot
 
 % Qz -> da importanza agli stati sulla diagonale principale abbiamo: z1 e
 % z2
-%caso reale umax=300
-Qz = [20 0; 0 0.08]
-Qv = 3e-03; % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande
+Qz = [100 0; 0 0.1]
+Qv = 1e-06; % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande
 
-%caso estremo umax=+inf
-%Qz = [1000 0; 0 0.001]
-%Qv = 1e-08;
 [K,S,P] = lqr(A,B,Qz,Qv);
 
 
 simOut = sim('simulation_control_LQR_WP2', 'SimulationMode', 'normal');
 
 % Chiamata alla funzione per visualizzare i risultati
-plotSimulationResults_LQR(simOut,1);
+plotSimulationResults(simOut,1);
 
 
 % Ottenendo i seguenti risultati:
 %{
-Step Information for the Output:
-         RiseTime: 0.2591
-    TransientTime: 0.3923
-     SettlingTime: 0.3923
-      SettlingMin: 3.1063
-      SettlingMax: 3.1944
-        Overshoot: 1.6818
-       Undershoot: 0
-             Peak: 3.1944
-         PeakTime: 0.5072
+RiseTime: 2.2115
+TransientTime: 3.9338
+SettlingTime: 3.9338
+SettlingMin: 2.8575
+SettlingMax: 3.1318
+Overshoot: 0
+Undershoot: 0
+Peak: 3.1318
+PeakTime: 20
+
+ANALISI RISULTATI
+
 
 
 %}
 
-%% LQR CON AZIONE INTEGRALE 
-% Proviamo a risolvere con un problema LQR: 
-clear all 
-close all 
-% Qz -> da importanza agli stati sulla diagonale principale abbiamo: z1 e 
-% z2 
-As=[0 1 0; 9.81 -0.1 0; 1 0 0]; 
-Bs=[0 ; 1 ; 0 ]; 
-%caso illimitato umax = +inf 
-%Qz = [1000 0 0; 0 0.01 0; 0 0 1000] 
-%Qv = 1e-08; % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande 
- 
- 
-% caso limitato umax = 300 
-Qz = [2 0 0; 0 0.01 0; 0 0 0.5]
-Qv = 3e-04; % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande
-[K,S,P] = lqr(As,Bs,Qz,Qv);
-%valore disturbo massimo =50
- 
-simOut = sim('simulation_control_LQR_azioneintegrale_WP2', 'SimulationMode', 'normal'); 
- 
-% Chiamata alla funzione per visualizzare i risultati 
-plotSimulationResults_LQR(simOut,1);
 
 
