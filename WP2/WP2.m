@@ -311,13 +311,17 @@ Bs=[0 ; 1 ; 0 ];
 %Qz = [1000 0 0; 0 0.01 0; 0 0 1000] 
 %Qv = 1e-08; % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande 
  
+A=[0 1; 9.81 -0.1]; 
+B=[0; 1]; 
+C=[1 0]; 
+D=0; 
  
-% caso limitato umax = 300 
-Qz = [2 0 0; 0 0.01 0; 0 0 0.5]
-Qv = 3e-04; % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande
-[K,S,P] = lqr(As,Bs,Qz,Qv);
+ % caso limitato umax = 300 
+Qz = [2 0 0; 0 0.01 0; 0 0 0.5]; 
+Qv = 3e-04 % Quando Qv è piccola -> non ha importanza quindi l'azione di controllo è più grande 
+[K,S,e] = lqi(ss(A,B,C,D),Qz,Qv); 
 %valore disturbo massimo =50
- 
+
 simOut = sim('simulation_control_LQR_azioneintegrale_WP2', 'SimulationMode', 'normal'); 
  
 % Chiamata alla funzione per visualizzare i risultati 
