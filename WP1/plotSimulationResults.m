@@ -1,5 +1,5 @@
 %% FUNZIONE PER ANALISI DEL CONTROLLORE
-function plotSimulationResults(simOut)
+function plotSimulationResults(simOut, stepInfo)
     % Estrai i dati dalla simulazione
     x = simOut.get('x');
     t = simOut.get('t');
@@ -21,15 +21,20 @@ function plotSimulationResults(simOut)
     plot(t, y)
     xlabel('t');
     ylabel('y');
+    legend('y');
 
     % Plot del controllo
     figure()
     plot(t, u)
     xlabel('t');
     ylabel('u');
+    legend('u');
+
 
     % Calcola e visualizza le informazioni sulla risposta allo scalino dell'uscita
-    results=stepinfo(y, t);
-    disp('Step Information for the Output:');
-    disp(results);
+    if stepInfo == 1
+       results=stepinfo(y, t);
+       disp('Step Information for the Output:');
+       disp(results);
+    end
 end

@@ -1,0 +1,108 @@
+Di seguito viene specificato il contenuto delle cartelle legate a ciascun Work Package per il project work del corso di Advanced Control. 
+ESECUZIONE DEL CODICE PER OGNI WP
+Ciascuno dei WP ha un live script all'interno del quale è contenuto il codice per le simulazioni e i calcoli utili alla progettazione e alla valutazione dei controllori proposti. Utilizzando il tasto "Run Section" in ciascuna sezione dei live script sarà possibile eseguire l'intero codice contenuto nella sezione.
+WP1
+Il file da aprire e consultare è "WP1.mlx", e al suo interno, sezione per sezione, è possibile eseguire il codice premendo "Run Section". In particolare, le sezioni del file trattano:
+- un'analisi della risposta del sistema a ciclo aperto partendo da diverse condizioni iniziali per individuare i punti di equilibrio stabili e instabili e come il sistema li raggiunge, prima con condizioni iniziali x=[0,0], poi con x=[pi/2,0], poi con x=[pi/2,2], con x=[pi,0] e con x=[pi,1];
+- un'ulteriore analisi della risposta del sistema a ciclo aperto partendo da x=[0,1] e variando l'ingresso di controllo;
+- un'analisi del sistema tramite il piano delle fasi variando l'ingresso di controllo e ponendolo in sequenza pari a 0, 2, 4, 6;
+- la costruzione delle matrici A, B, C e D per il sistema linearizzato intorno ai punti di equilibrio individuati analiticamente;
+- l'analisi del controllore v0 tramite valutazione della bontà delle simulazioni, tenendo conto di un riferimento pari a pi;
+- l'analisi del controllore v0 tramite piano delle fasi a ciclo chiuso;
+- la costruzione della funzione dinamica del sistema, progettando così nell'ambiente MATLAB il sistema di equazioni che descrive il sistema affrontato.
+WP2
+Il file da aprire e consultare è "WP2.mlx", e al suo interno, sezione per sezione, è possibile eseguire il codice premendo "Run Section". In particolare, le sezioni del file trattano:
+- un controllo sulla raggiungibilità del sistema, inizializzando anche per questo WP le matrici A, B, C e D;
+- un pole placement tramite la funzione "place" di MATLAB per individuare i parametri K e kr da utilizzare nelle simulazioni;
+- un test sul sistema linearizzato con i parametri K e kr appena ottenuti, quindi simulazione sul sistema ignorando le non linearità e imponendo r=0 come riferimento;
+- un test sul sistema non lineare con i parametri K e kr appena ottenuti, quindi simulazione sul sistema vero e imponendo r=pi come riferimento;
+- un pole placement tramite equipollenza dei polinomi, quindi calcolo dei valori K e kr tramite valutazione dei coefficienti k1 e k2 ottenuti a partire dall'imposizione di performance desiderate tramite zita e w;
+- un test sul sistema linearizzato con i parametri K e kr ottenuti tramite equipollenza, quindi simulazione sul sistema ignorando le non linearità e imponendo r=0 come riferimento;
+- un test sul sistema non lineare con i parametri K e kr ottenuti tramite equipollenza, quindi simulazione sul sistema vero e imponendo r=pi come riferimento;
+- la progettazione di un controllore LQR, con valutazione del parametro K tramite il comando "lqr" di MATLAB e scegliendo Qz=[20 0, 0 0.08] e Qv=3e-03;
+- la costruzione del sistema esteso per introdurre una componente di azione integrale, definendo quindi As, Bs e hatB, con controllo di raggiungibilità del sistema esteso;
+- la progettazione di un controllore LQR con azione integrale, con valutazione del parametro K tramite il comando "lqi" di MATLAB e scegliendo Qz=[2 0 0, 0 0.01 0, 0 0 0.5] e Qv=3e-04;
+- un test senza disturbo sul sistema non lineare con i parametri K e kr ottenuti tramite "lqi", quindi simulazione sul sistema vero e imponendo r=pi come riferimento;
+- un test con un disturbo a gradino di intensità 50 sul sistema non lineare con i parametri K e kr ottenuti tramite "lqi", quindi simulazione sul sistema vero e imponendo r=pi come riferimento.
+WP3
+Il file da aprire e consultare è "WP3.mlx", e al suo interno, sezione per sezione, è possibile eseguire il codice premendo "Run Section". In particolare, le sezioni del file trattano:
+- la progettazione di un osservatore con controllore basato su LQR, valutando anzitutto l'osservabilità del sistema, definendo poli più veloci degli autovalori di A-BK, e sfruttando il comando "place" di MATLAB per ottenere i valori del parametro L;
+- un test sul sistema non lineare con il parametro L appena ottenuto, quindi simulazione sul sistema vero con osservatore e controllore LQR e imponendo r=pi;
+- la progettazione di un osservatore con controllore basato su LQI, valutando anzitutto l'osservabilità del sistema, definendo poli più veloci degli autovalori di As-BsK, con K ottenuto come nel caso LQI nel WP2, e sfruttando il comando "place" di MATLAB per ottenere i valori del parametro L; 
+- un test senza disturbi sul sistema non lineare con il parametro L appena ottenuto, quindi simulazione sul sistema vero con osservatore e controllore LQR con azione integrale e imponendo r=pi;
+- un test con un disturbo a gradino di intensità 50 sul sistema non lineare con il parametro L appena ottenuto, quindi simulazione sul sistema vero con osservatore e controllore LQR con azione integrale e imponendo r=pi.
+WP4
+Il file da aprire e consultare è "WP4.mlx", e al suo interno, sezione per sezione, è possibile eseguire il codice premendo "Run Section". In particolare, le sezioni del file trattano:
+- la progettazione di un controllore basato su feedback linearization input/output con riferimento tempo invariante e annessa simulazione;
+- la progettazione di un controllore basato su feedback linearization input/output con riferimento tempo variante, prima costituito da un segnale sinusoidale, poi sostituito da una rampa, con annessa simulazione;
+- la progettazione di un controllore basato su feedback linearization input/output con riferimento tempo invariante e azione integrale, con annessa simulazione senza disturbo;
+- un test con un disturbo a gradino di intensità 50 sul sistema non lineare, quindi simulazione sul sistema vero con il controllore basato su feedback linearization appena ottenuto;
+- la progettazione di un controllore basato su feedback linearization input/output con riferimento tempo variante e azione integrale, con annessa simulazione senza disturbo;
+- un test con un disturbo a gradino di intensità 50 sul sistema non lineare, quindi simulazione sul sistema vero con il controllore basato su feedback linearization appena ottenuto.
+WP5
+Il file da aprire e consultare è "WP5.mlx", e al suo interno, sezione per sezione, è possibile eseguire il codice premendo "Run Section". In particolare, le sezioni del file trattano:
+- l'individuazione delle variabili di stato e dell'azione di controllo espresse in funzione della variabile di scheduling sigma;
+- la linearizzazione del sistema intorno ai punti di equilibrio e l'individuazione della jacobiana in funzione di sigma;
+- l'individuazione dei parametri k1 e k2 tramite equipollenza dei polinomi (setting del flag LQR_activate=0) a partire dal polinomio caratteristico sI-A+BK e imponendo le performance desiderate tramite zita e w, per poi valutare k1_sigma e k2_sigma;
+- un test sul sistema non lineare valutando i guadagni come funzioni continue della variabile di scheduling, con riferimento tempo invariante;
+- un test sul sistema non lineare ottenendo i guadagni tramite la look-up table, con riferimento tempo invariante;
+- 3 test sul sistema non lineare con riferimento tempo variante costituito da un segnale sinusoidale, rispettivamente calcolando i guadagni come funzioni continue della variabile di scheduling, poi ottenendoli tramite look-up table, e infine utilizzando un modello basato su StateFlow;
+- un test sul sistema non lineare valutando i guadagni come funzioni continue della variabile di scheduling, con riferimento tempo invariante, ma ottenendo i valori di K tramite risoluzione del problema di ottimizzazione LQR (setting del flag LQR_activate=1), e non tramite equipollenza;
+- un test sul sistema non lineare con riferimento tempo variante costituito da un segnale sinusoidale e valutando i guadagni come funzioni continue della variabile di scheduling, con K ottenuto tramite LQR;
+- un test sul sistema non lineare senza disturbi valutando i guadagni come funzioni continue della variabile di scheduling, con riferimento tempo invariante, ma ottenendo i valori di K tramite LQR con azione integrale;
+- un test con un disturbo a gradino di intensità 50 sul sistema non lineare valutando i guadagni come funzioni continue della variabile di scheduling, con riferimento tempo invariante, ma ottenendo i valori di K tramite LQR con azione integrale;
+- un test sul sistema non lineare con riferimento tempo variante costituito da un segnale sinusoidale senza disturbi e valutando i guadagni come funzioni continue della variabile di scheduling, con K ottenuto tramite LQI;
+- un test sul sistema non lineare con riferimento tempo variante costituito da un segnale sinusoidale con disturbo sinusoidale e valutando i guadagni come funzioni continue della variabile di scheduling, con K ottenuto tramite LQI.
+CONTENUTO DEI FILE SIMULINK UTILIZZATI
+Per quanto riguarda le simulazioni alle quali si fa riferimento per ciascun WP, esse si basano sui seguenti file simulink:
+- per il WP1
+	- "open_loop" per la simulazione a ciclo aperto del sistema originario;
+	- "closed_loop_v0" per la simulazione a ciclo chiuso del sistema con il controllore v0;
+- per il WP2
+	- "PP_s_inv_L" per la simulazione a ciclo chiuso del sistema linearizzato con controllore ottenuto tramite pole placement, con riferimento tempo invariante;
+	- "PP_s_inv_NL" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite pole placement, con riferimento tempo invariante;
+	- "LQR_s_inv" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite LQR, con riferimento tempo invariante;
+	- "LQR_s_inv_int" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite LQR con azione integrale, con riferimento tempo invariante;
+- per il WP3
+	- "OBS_s_inv" per la simulazione a ciclo chiuso del sistema non lineare con osservatore e controllore ottenuto tramite LQR, con riferimento tempo invariante;
+	- "OBS_s_inv_int" per la simulazione a ciclo chiuso del sistema non lineare con osservatore e controllore ottenuto tramite LQR con azione integrale, con riferimento tempo invariante;
+- per il WP4
+	- "FL_s_inv" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite feedback linearization, con riferimento tempo invariante;
+	- "FL_s_v_seno" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite feedback linearization, con riferimento tempo variante costituito da un seno;
+	- "FL_s_v_rampa" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite feedback linearization, con riferimento tempo variante costituito da una rampa;
+	- "FL_s_inv_int" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite feedback linearization con azione integrale, con riferimento tempo invariante;
+	- "FL_s_v_seno_int" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite feedback linearization con azione integrale, con riferimento tempo variante costituito da un seno;
+	- "FL_s_v_rampa_int" per la simulazione a ciclo chiuso del sistema non lineare con controllore ottenuto tramite feedback linearization con azione integrale, con riferimento tempo variante costituito da una rampa;
+- per il WP5
+	- "GS_s_inv_function" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling e parametri ottenuti come funzioni della variabile di scheduling, con riferimento tempo invariante;
+	- "GS_s_inv_lookuptable" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling e parametri ottenuti tramite la look-up table, con riferimento tempo invariante;
+	- "GS_s_v_seno_function" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling e parametri ottenuti come funzioni della variabile di scheduling, con riferimento tempo variante costituito da un segnale sinusoidale;
+	- "GS_s_v_seno_lookuptable" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling e parametri ottenuti tramite la look-up table, con riferimento tempo variante costituito da un segnale sinusoidale;
+	- "GS_s_v_seno_stateflow" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling e parametri ottenuti tramite un chart StateFlow, con riferimento tempo variante costituito da un segnale sinusoidale;
+	- "GS_LQI_inv_function" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling basato su controllore LQI e parametri ottenuti come funzioni della variabile di scheduling, con riferimento tempo invariante;
+	- "GS_LQI_v_seno_function" per la simulazione a ciclo chiuso del sistema non lineare con gain scheduling basato su controllore LQI e parametri ottenuti come funzioni della variabile di scheduling, con riferimento tempo variante costituito da un segnale sinusoidale.
+FUNZIONI MATLAB PROGETTATE ED UTILIZZATE
+Di seguito vengono descritte le funzioni MATLAB scritte ed utilizzate all'interno del codice di ogni WP:
+- per il WP1
+	- "plotSimulationResults", dati l'output di una simulazione e le informazioni di risposta a gradino del sistema, effettua un plot degli stati, dello sforzo di controllo, dell'uscita e del confronto tra uscita e riferimento, oltre che visualizzare le informazioni di risposta a gradino del sistema;
+	- "function_WP1", dato il vettore di stato del sistema, valuta il nuovo stato raggiunto dal sistema secondo il modello del sistema;
+- per il WP2
+	- le stesse funzioni del WP1;
+- per il WP3
+	- le stesse funzioni del WP1;
+	- "plotDifferences", dati l'output di una simulazione in cui viene memorizzato sia lo stato vero sia quello osservato, effettua un plot del confronto tra gli stati veri e quelli osservati;
+- per il WP4
+	- "plotSimulationResults" come nel WP1;
+	- "FL_FBL_control", dati il vettore di stati e l'ingresso equivalente, computa l'ingresso di controllo da fornire al sistema;
+	- "FL_s_inv_control_law", data l'uscita, l'uscita desiderata, e le loro derivate fino alla derivata seconda, computa l'ingresso equivalente per il caso con riferimento tempo invariante;
+	- "FL_s_inv_control_law_int", data l'uscita, l'uscita desiderata, e le loro derivate fino alla derivata seconda, computa l'ingresso equivalente per il caso con riferimento tempo invariante con azione integale;
+	- "FL_s_v_control_law", data l'uscita, l'uscita desiderata, e le loro derivate fino alla derivata seconda, computa l'ingresso equivalente per il caso con riferimento tempo variante;
+	- "FL_s_v_control_law_int", data l'uscita, l'uscita desiderata, e le loro derivate fino alla derivata seconda, computa l'ingresso equivalente per il caso con riferimento tempo variante;
+	- "FL_sys", dato l'ingresso di controllo e gli stati, computa il prossimo stato del sistema secondo il modello del sistema;
+	- "FL_sys_out", dati gli stati, computa l'uscita del sistema secondo il modello del sistema;
+- per il WP5
+	- "GS_compute_gains_LQR", data la variabile di scheduling, computa il parametro K tramite LQR;
+	- "GS_compute_gains_LQI", data la variabile di scheduling, computa il parametro K tramite LQI;
+	- "GS_compute_gains_PP", dato il riferimento e i parametri zita e omega, computa il parametro K tramite equipollenza dei polinomi;
+	- "GS_sys", dato l'ingresso di controllo e gli stati, computa il prossimo stato del sistema secondo il modello del sistema;
+	- "plotSimulationResults" come nel WP1.
